@@ -12,6 +12,7 @@ const origins = (process.env.CORS_ORIGINS || '*').split(',').map((s) => s.trim()
 app.use(cors({ origin: origins.includes('*') ? true : origins }));
 app.use(express.json());
 
+app.get('/favicon.ico', (_req, res) => res.status(204).end());
 app.get('/', (_req, res) => res.json({ status: 'ok', service: 'T2T admin backend' }));
 app.use('/api/admin/auth', require('./routes/auth'));
 app.use('/api/admin', require('./routes/admin'));
